@@ -4,3 +4,6 @@ Package regroupant un ensemble d'outils python (décorateurs, classes)... utiles
 
 ## Décorateur my_types_checker & my_class_checker
 Outils pour valider et vérifier les typages en Python respectivement d'après la signature de la méthode/les signatures de la classe et de ses méthodes
+
+## Fonction my_fasta
+Outil pour parse efficacement un fichier fasta et le renvoyer sous forme de dictionnaire

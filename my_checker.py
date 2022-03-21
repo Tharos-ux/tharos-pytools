@@ -54,7 +54,6 @@ def my_class_checker(cls):
     Application du décorateur à l'entèreté d'une classe.
     A ne pas utiliser sur une fonction seul. 
     """
-    print(getattr(cls, attr))
     for attr in cls.__dict__:
         if callable(getattr(cls, attr)):
             setattr(cls, attr, my_types_checker(getattr(cls, attr)))

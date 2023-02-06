@@ -1,3 +1,4 @@
 # tharos-pytools
 
-Package regroupant un ensemble d'outils python (décorateurs, classes)... utiles à l'exécution de divers programmes.
+This package contains cool functions in order to better manage Python projects.
+For now, it only contains functions to ensure multithreading on a function, with respect to memory.

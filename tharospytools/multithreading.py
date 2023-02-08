@@ -2,6 +2,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from multiprocessing import cpu_count
 from typing import Callable
+from collections.abc import Iterable
 try:
     from resource import setrlimit, getrlimit, RLIMIT_AS
     from psutil import virtual_memory
@@ -26,7 +27,7 @@ def limit_memory(ratio: float = 0.8) -> None:
 
 def futures_collector(
     func: Callable,
-        argslist: list[tuple],
+        argslist: list,
         kwargslist: list[dict] | None = None,
         num_processes: int = cpu_count(),
         memory: float | None = None
@@ -48,11 +49,11 @@ def futures_collector(
             futures = [
                 executor.submit(
                     func,
-                    *args
+                    *args if isinstance(args, Iterable) else args
                 ) if kwargslist is None else
                 executor.submit(
                     func,
-                    *args,
+                    *args if isinstance(args, Iterable) else args,
                     **kwargslist[i]
                 ) for i, args in enumerate(argslist)
             ]

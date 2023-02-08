@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: tharos-pytools
-Version: 0.0.6
+Version: 0.0.9
 Summary: Package that packs some utility functions.
 Home-page: https://github.com/Tharos-ux/tharos-pytools
 Author: Tharos
@@ -18,4 +18,12 @@ License-File: LICENCE
 # tharos-pytools
 
 This package contains cool functions in order to better manage Python projects.
-For now, it only contains functions to ensure multithreading on a function, with respect to memory.
+
+## Contents
+
++ `futures_collector` is a function that ensures multithreading.
++ `limit_memory` allows to define a percentage-based memorylock for current Python thread.
++ `get_palette` allows to create a N-sized color palette.
++ `get_palette_from_list` returns a list of colors, normalizing a data array.
++ `overload` is a decorator that allows C-like overloading of functions.
++ `flatten` is a fast list flattener.

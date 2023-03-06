@@ -9,5 +9,5 @@ setup(
     license='MIT',
     packages=['tharospytools'],
     zip_safe=False,
-    install_requires=['matplotlib', 'mycolorpy', 'resource']
+    install_requires=['matplotlib', 'mycolorpy', 'resource', 'rich']
 )

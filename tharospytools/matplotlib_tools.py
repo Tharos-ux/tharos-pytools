@@ -1,5 +1,5 @@
 'Tools to assist with graphs creation'
-import matplotlib.pyplot as plt
+import matplotlib as mpl
 from matplotlib.colors import rgb2hex, hex2color
 from mycolorpy import colorlist
 
@@ -17,14 +17,13 @@ def get_palette(number_of_colors: int, cmap_name: str = 'viridis', as_hex: bool 
         list: palette of colors
     """
     try:
-        colormap = eval(f"plt.cm.{cmap_name}")
+        colormap = mpl.colormaps[cmap_name].resampled(number_of_colors)
     except Exception as exc:
         raise ValueError(
-            f"The colormap {cmap_name} is not a valid colormap") from exc
-    number_of_colors = min(colormap.N, number_of_colors)
+            f"The colormap {cmap_name} is not a valid colormap") from exc    
     return [
-        rgb2hex(colormap(int(x*colormap.N/number_of_colors))) if as_hex
-        else colormap(int(x*colormap.N/number_of_colors)) for x in range(number_of_colors)
+        rgb2hex(colormap(int(x/number_of_colors))) if as_hex
+        else colormap(int(x/number_of_colors)) for x in range(number_of_colors)
     ]
 
 

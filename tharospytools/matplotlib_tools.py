@@ -20,10 +20,10 @@ def get_palette(number_of_colors: int, cmap_name: str = 'viridis', as_hex: bool 
         colormap = mpl.colormaps[cmap_name].resampled(number_of_colors)
     except Exception as exc:
         raise ValueError(
-            f"The colormap {cmap_name} is not a valid colormap") from exc    
+            f"The colormap {cmap_name} is not a valid colormap") from exc
     return [
-        rgb2hex(colormap(int(x/number_of_colors))) if as_hex
-        else colormap(int(x/number_of_colors)) for x in range(number_of_colors)
+        rgb2hex(colormap(x/number_of_colors)) if as_hex
+        else colormap(x/number_of_colors) for x in range(number_of_colors)
     ]
 
 

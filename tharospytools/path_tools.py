@@ -29,9 +29,6 @@ def path_allocator(
         folder_path = ""
         sep = ""
         file_name = path_to_validate
-    print("Folder: "+folder_path)
-    print("Separator: "+sep)
-    print("Flename: "+file_name)
     if file_name == "":
         file_name = default_name
     if particle and not file_name.endswith(particle):
@@ -43,7 +40,3 @@ def path_allocator(
     if folder_path != "":
         Path(folder_path).mkdir(parents=True, exist_ok=True)
     return full_path
-
-
-print(path_allocator("/home/sidubois/Workspace/Notes/graphs",
-      particle=".html", default_name='graph'))

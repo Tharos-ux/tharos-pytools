@@ -1,5 +1,5 @@
 "Tools to manipulate paths"
-from os.path import exists
+from os.path import exists, isdir
 from pathlib import Path
 
 
@@ -21,13 +21,29 @@ def path_allocator(
     Returns:
         str: the path to the file, with extension
     """
-    folder_path, sep, file_name = path_to_validate.rpartition('/')
+    if ('/') in path_to_validate:
+        if isdir(path_to_validate) and not path_to_validate.endswith('/'):
+            path_to_validate = path_to_validate + '/'
+        folder_path, sep, file_name = path_to_validate.rpartition('/')
+    else:
+        folder_path = ""
+        sep = ""
+        file_name = path_to_validate
+    print("Folder: "+folder_path)
+    print("Separator: "+sep)
+    print("Flename: "+file_name)
     if file_name == "":
         file_name = default_name
     if particle and not file_name.endswith(particle):
         file_name = file_name+particle
-    if not always_yes and exists(full_path := (folder_path+sep+file_name)):
+    full_path: str = folder_path+sep+file_name
+    if not always_yes and exists(full_path):
         if not input('File already exists. Do you want to write over it? (y/n): ').lower().strip() == 'y':
             raise OSError("File already exists. Aborting.")
-    Path(folder_path).mkdir(parents=True, exist_ok=True)
+    if folder_path != "":
+        Path(folder_path).mkdir(parents=True, exist_ok=True)
     return full_path
+
+
+print(path_allocator("/home/sidubois/Workspace/Notes/graphs",
+      particle=".html", default_name='graph'))

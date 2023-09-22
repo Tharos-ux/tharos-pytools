@@ -5,3 +5,4 @@ from .overloading import overload
 from .list_tools import flatten
 from .signatures import types_checker
 from .bio_tools import revcomp
+from .path_tools import path_allocator

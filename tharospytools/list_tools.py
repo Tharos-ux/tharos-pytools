@@ -1,5 +1,5 @@
 "Utilities for lists"
-from typing import Generator, Callable
+from typing import Generator, Callable, Iterable
 
 
 def cast(dtype: type):
@@ -30,3 +30,44 @@ def flatten(list_to_flatten: list) -> Generator:
             yield from flatten(elt)
         else:
             yield elt
+
+
+def boolean_reverse(list_to_reverse: list, cond: bool) -> list:
+    """If boolean condition is true, reverses the list.
+    Otherwise, keeps it as it is.
+
+    Args:
+        list_to_reverse (list): candidate for reversal
+        cond (bool): if the list should be reversed
+
+    Returns:
+        list: the list or it's reverse
+    """
+    list_to_reverse[::-cond or 1]
+
+
+def grouper(iterable: Iterable, n: int = 2, m: int = 1) -> list:
+    """Collect data into possibly overlapping fixed-length chunks or blocks
+
+    Args:
+        iterable (Iterable): the iterable you want to pack
+        n (int, optional): size of the chunks. Defaults to 2.
+        m (int, optional): overlaps of the chunks. Defaults to 1.
+
+    Returns:
+        list: a list of n-sized chunks with an overlap of m
+    """
+    return [iterable[i:i+n] for i in range(0, len(iterable)-1, n-m)]
+
+
+@cast(list)
+def common_members(*elements: set) -> list:
+    """given a series of sets, returns common members
+
+    Args:
+        *elements (set): a series of sets
+
+    Returns:
+        list: common elements between all the sets
+    """
+    return elements[0].intersection(*elements[1:])

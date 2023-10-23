@@ -1,4 +1,3 @@
-from time import sleep
 from sys import stdout
 from rich import print
 

@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
     name='tharos-pytools',
-    version='0.0.19',
+    version='0.0.20',
     description='Collection of quality-of-life functions',
     url='https://github.com/Tharos-ux/tharos-pytools',
     author='Tharos',

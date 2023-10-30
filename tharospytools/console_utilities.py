@@ -16,4 +16,6 @@ def progress_bar(current: int, total: int, bar_length: int = 20):
     padding: str = int(bar_length - len(arrow)) * ' '
     ending: str = '\n' if current == total else '\r'
     print(
-        f'[blue1]{int(fraction*100)}%\t[dark_orange][{arrow}{padding}]', end=ending)
+        f' [blue1]{int(fraction*100)}%\t[dark_orange][{arrow}{padding}]', end=ending)
+    if current == total:
+        print("")

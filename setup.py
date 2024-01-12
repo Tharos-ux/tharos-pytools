@@ -12,8 +12,8 @@ AUTHOR_EMAIL: str = "dubois.siegfried@gmail.com",
 LICENCE: str = "LICENCE"
 DESCRIPTION: str = "Collection of quality-of-life functions"
 REQUIRED_PYTHON: tuple = (3, 10)
-OVERRIDE_VN: bool = True
-VN: str = "0.0.25"
+OVERRIDE_VN: bool = False
+VN: str = "0.0.26"
 URL: str = "https://github.com/Tharos-ux/tharos-pytools"
 REQUIREMENTS: list[str] = ['matplotlib', 'mycolorpy', 'resource', 'rich']
 
@@ -33,7 +33,7 @@ if argv[1] in ('install', 'sdist', 'bdist_wheel'):
             _iv: list = [int(x) for x in require(NAME)[0].version.split('.')]
             _iv[-1] += 1
         except:
-            _iv: list = [0, 0, 0]
+            _iv: list = [int(x) for x in VN.split('.')]
         finally:
             _iv: str = '.'.join([str(x) for x in _iv])
 

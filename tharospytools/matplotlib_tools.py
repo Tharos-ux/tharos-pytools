@@ -2,6 +2,33 @@
 import matplotlib as mpl
 from matplotlib.colors import rgb2hex, hex2color
 from mycolorpy import colorlist
+from pickle import dump, load
+from matplotlib.pyplot import Axes
+from tharospytools.path_tools import path_allocator
+
+
+def save_dynamic_fig(ax: Axes, output_path: str) -> None:
+    """Saves a matplotlib figure for later use
+    File will be saved as .pkl (pickle) file
+
+    Args:
+        ax (Axes): the Axes object
+        output_path (str): the path where to save
+    """
+    dump(ax, open(path_allocator(output_path, particle='.pkl', default_name='plot'), 'wb'))
+
+
+def load_dynamic_fig(input_path: str) -> Axes:
+    """Loads a matplotlib figure to reuse it
+    UNPICKLE AT YOUR OWN RISK !
+
+    Args:
+        input_path (str): path where the .pkl file is
+
+    Returns:
+        Axes: the dynamic figure
+    """
+    return load(open(path_allocator(input_path, particle='.pkl', default_name='plot'), 'rb'))
 
 
 def get_palette(number_of_colors: int, cmap_name: str = 'viridis', as_hex: bool = False) -> list:

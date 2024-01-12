@@ -25,11 +25,18 @@ def types_checker(func: Callable):
             if annotation is not _empty and input_type != annotation:
                 try:
                     annotation(arguments[i])
-                except TypeError as exc:
+                except TypeError:
                     raise TypeError(
-                        f"Error in {func.__name__} : input type {input_type} incompatible with {annotation}") from exc
+                        f"Error: in {func.__name__}, input type {input_type} incompatible with {annotation}")
+
+                except ValueError:
+                    raise TypeError(
+                        f"Error: in {func.__name__}, input type {input_type} incompatible with {annotation}")
+                else:
+                    print(
+                        "Warning: input {input_type} in {func.__name__} is not in line with typehint {annotation}")
         retour = func(*args, **kwargs)
-        if ret_annotation is not _empty and ret_annotation is not None and isinstance(retour, ret_annotation):
+        if ret_annotation is not _empty and ret_annotation is not None and not isinstance(retour, ret_annotation):
             raise TypeError(
                 f"Error in {func.__name__} : return type {type(retour)} does not match {ret_annotation}")
 

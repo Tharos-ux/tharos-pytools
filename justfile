@@ -6,3 +6,6 @@ install:
 
 build:
     @rm -f dist/* && python -m build && twine upload dist/*
+
+local:
+    @python -m pip install .

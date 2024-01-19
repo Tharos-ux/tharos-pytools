@@ -12,8 +12,8 @@ AUTHOR_EMAIL: str = "dubois.siegfried@gmail.com",
 LICENCE: str = "LICENCE"
 DESCRIPTION: str = "Collection of quality-of-life functions"
 REQUIRED_PYTHON: tuple = (3, 10)
-OVERRIDE_VN: bool = False
-VN: str = "0.0.26"
+OVERRIDE_VN: bool = True
+VN: str = "0.0.29"
 URL: str = "https://github.com/Tharos-ux/tharos-pytools"
 REQUIREMENTS: list[str] = ['matplotlib', 'mycolorpy', 'resource', 'rich']
 

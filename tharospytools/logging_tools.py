@@ -4,6 +4,28 @@ from sys import stdout
 from threading import get_ident
 from functools import wraps
 from time import time
+from typing import Callable
+from dis import Bytecode
+from collections import Counter
+
+
+def function_calls(func: Callable) -> list:
+    """Lists the number of calls of a function to help profile what needs to be optimized first
+
+    Args:
+        func (Callable): a function call
+
+    Returns:
+        list: _description_
+    """
+    funcs: list = []
+    bytecode: Bytecode = Bytecode(func)
+    instrs: list = list(reversed([instr for instr in bytecode]))
+    for (ix, instr) in enumerate(instrs):
+        if instr.opname == "CALL_FUNCTION" or instr.opname == "CALL_FUNCTION_EX" or instr.opname == "CALL_FUNCTION_KW":
+            load_func_instr = instrs[ix + instr.arg + 1]
+            funcs.append(load_func_instr.argval)
+    return Counter([funcname for (_, funcname) in enumerate(reversed(funcs), 1)]).most_common()
 
 
 def timing(f):
